@@ -18,12 +18,13 @@ export default class App extends React.Component {
 			value={this.state.text}
 			placeholder='Search'
 			placeholderTextColor='grey'
+			underlineColorAndroid='rgba(0,0,0,0)'
 			onSubmitEditing={() => this.setState({text: ''})}/>
 		</View>
 		<Text adjustFontSizeToFit={true} style={[styles.titleText, {flex: 5, backgroundColor: 'powderblue', padding: 5, color: 'grey'}]}>Flock</Text>
 		<View style={{flex: 68, backgroundColor: 'white'}}>
 			<UserView/>
-		</View>`
+		</View>
 		<View style={{flex: 10, backgroundColor: 'powderblue', flexDirection: 'row'}}>
 			<View style={{flex: 1, backgroundColor: this.state.tab == 'map' ? 'lightcyan' : 'powderblue'}}>
 				<TouchableOpacity style={{flex: 1}}
