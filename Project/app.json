@@ -1,6 +1,14 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
-	"orientation": "portrait"
+	"ios": {
+	  "bundleIdentifier": "org.waitlisters.flock",
+	  "config" : {
+	    "googleMapsApiKey": "AIzaSyBvUB2fPydJQ3Bwu80mtVnDdytUj8MA8vY"
+	  }
+	},
+    "android": {
+	  "package": "org.waitlisters.flock"
+	}
   }
 }
