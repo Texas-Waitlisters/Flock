@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { MapView } from 'expo';
 import UserView from './UserView';
 
@@ -23,34 +23,47 @@ export default class App extends React.Component {
 			onSubmitEditing={() => this.setState({text: ''})}/>
 		</View>
 		<Text adjustFontSizeToFit={true} style={[styles.titleText, {flex: 5, backgroundColor: 'powderblue', padding: 5, color: 'grey'}]}>Flock</Text>
-		<View style={{flex: 68, backgroundColor: 'white', borderColor: 'white', borderTopWidth: 3, borderBottomWidth: 3}}>
+		<View style={{flex: 68, backgroundColor: 'white', borderColor: 'white', borderTopWidth: 3, borderBottomWidth: 3}}>i
+		{ this.state.tab == 'map' &&
 			<MapView style={{ flex: 1, }}
 			initialRegion={{
 			  latitude: 37.78825,
 			  longitude: -122.4324,
 			  latitudeDelta: 0.0922,
 			  longitudeDelta: 0.0421}}/>
+		}
+	    { this.state.tab == 'user' &&
+			<UserView/>
+		}
 		</View>
 		<View style={{flex: 10, backgroundColor: 'powderblue', flexDirection: 'row'}}>
-			<View style={{flex: 1, backgroundColor: this.state.tab == 'map' ? 'lightcyan' : 'powderblue'}}>
+			<View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: this.state.tab == 'map' ? 'lightcyan' : 'powderblue'}}>
 				<TouchableOpacity style={{flex: 1}}
 					onPress={() => this.setState({tab: 'map'})}
-				/>
+				>
+					<Image source={require('./icons/map.png')} resizeMode='contain' style={{flex: 1}} pointerEvents={"none"}/>
+				</TouchableOpacity>
 			</View>
-			<View style={{flex: 1, backgroundColor: this.state.tab == 'events' ? 'lightcyan' : 'powderblue'}}>
+			<View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: this.state.tab == 'events' ? 'lightcyan' : 'powderblue'}}>
 				<TouchableOpacity style={{flex: 1}}
 					onPress={() => this.setState({tab: 'events'})}
-				/>
+				>
+					<Image source={require('./icons/events.png')} resizeMode='contain' style={{flex: 1}} pointerEvents={"none"}/>
+				</TouchableOpacity>
 			</View>
-			<View style={{flex: 1, backgroundColor: this.state.tab == 'user' ? 'lightcyan' : 'powderblue'}}>
+			<View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: this.state.tab == 'user' ? 'lightcyan' : 'powderblue'}}>
 				<TouchableOpacity style={{flex: 1}}
 					onPress={() => this.setState({tab: 'user'})}
-				/>
+				>
+					<Image source={require('./icons/user.png')} resizeMode='contain' style={{flex: 1}} pointerEvents={"none"}/>
+				</TouchableOpacity>
 			</View>
-			<View style={{flex: 1, backgroundColor: this.state.tab == 'reservation' ? 'lightcyan' : 'powderblue'}}>
+			<View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: this.state.tab == 'reservation' ? 'lightcyan' : 'powderblue'}}>
 				<TouchableOpacity style={{flex: 1}}y
 					onPress={() => this.setState({tab: 'reservation'})}
-				/>
+				>
+					<Image source={require('./icons/reservations.png')} resizeMode='contain' style={{flex: 1}} pointerEvents={"none"}/>
+				</TouchableOpacity>
 			</View>
 		</View>
       </View>
