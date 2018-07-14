@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { MapView } from 'expo';
 import UserView from './UserView';
 
 export default class App extends React.Component {
@@ -22,8 +23,13 @@ export default class App extends React.Component {
 			onSubmitEditing={() => this.setState({text: ''})}/>
 		</View>
 		<Text adjustFontSizeToFit={true} style={[styles.titleText, {flex: 5, backgroundColor: 'powderblue', padding: 5, color: 'grey'}]}>Flock</Text>
-		<View style={{flex: 68, backgroundColor: 'white'}}>
-			<UserView/>
+		<View style={{flex: 68, backgroundColor: 'white', borderColor: 'white', borderTopWidth: 3, borderBottomWidth: 3}}>
+			<MapView style={{ flex: 1, }}
+			initialRegion={{
+			  latitude: 37.78825,
+			  longitude: -122.4324,
+			  latitudeDelta: 0.0922,
+			  longitudeDelta: 0.0421}}/>
 		</View>
 		<View style={{flex: 10, backgroundColor: 'powderblue', flexDirection: 'row'}}>
 			<View style={{flex: 1, backgroundColor: this.state.tab == 'map' ? 'lightcyan' : 'powderblue'}}>
