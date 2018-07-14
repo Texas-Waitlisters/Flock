@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import UserView from './UserView';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,8 +20,10 @@ export default class App extends React.Component {
 			placeholderTextColor='grey'
 			onSubmitEditing={() => this.setState({text: ''})}/>
 		</View>
-		<Text adjustFontSizeToFit={true} style={[styles.titleText, {flex: 5, backgroundColor: 'powderblue', padding: 5}]}>Flock</Text>
-		<View style={{flex: 68, backgroundColor: 'white'}}/>`
+		<Text adjustFontSizeToFit={true} style={[styles.titleText, {flex: 5, backgroundColor: 'powderblue', padding: 5, color: 'grey'}]}>Flock</Text>
+		<View style={{flex: 68, backgroundColor: 'white'}}>
+			<UserView/>
+		</View>`
 		<View style={{flex: 10, backgroundColor: 'powderblue', flexDirection: 'row'}}>
 			<View style={{flex: 1, backgroundColor: this.state.tab == 'map' ? 'lightcyan' : 'powderblue'}}>
 				<TouchableOpacity style={{flex: 1}}
