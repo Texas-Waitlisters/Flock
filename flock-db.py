@@ -33,6 +33,22 @@ def getRentalsAtLocation(loc_id, sql):
 
 def approveRental(rental_id, sql, db): 
     sql.execute("update rentals set approved = true where rental_id = %d " % (rental_id))
+    sql.execute("select loc_id from rentals where rental_id = %d" % (rental_id))
+    l = sql.fetchone()
+    loc = l[0] 
+    sql.execute("select bill from rentals where loc_id = %d and rental_id <> %d" % (loc, rental_id))
+    b = sql.fetchone()
+    bill = b[0]
+    sql.execute("select price from locations where loc_id = %d" % (loc))
+    p = sql.fetchone()
+    price = p[0]
+    newPeople = price/bill + 1
+    newPrice = price/newPeople
+    sql.execute("select acct_id from rentals where loc_id = %d " %(loc))
+    renters = sql.fetchall()
+    for r in renters:
+        person = r[0]
+        sql.execute("update rentals set bill = %d where acct_id = %d" %(newPrice, person))
     db.commit()
 
 def requestRental(acct_id, loc_id, sql, db):
@@ -41,7 +57,7 @@ def requestRental(acct_id, loc_id, sql, db):
     p = sql.fetchone()
     price = p[0]
     newCost = price/(people + 1)
-    sql.execute("insert into rentals values (%s, %s, %s,  0, )" %(loc_id, acct_id, newCost)
+    sql.execute("insert into rentals values (%s, %s, %s,  0, )" %(loc_id, acct_id, newCost))
     db.commit()
 
 def main():
@@ -50,6 +66,7 @@ def main():
                         passwd="",  # your password
                         db="flock")        # name of the data base
     sql = db.cursor()
+    approveRental(1, sql, db)
     db.close()
 
 main()
