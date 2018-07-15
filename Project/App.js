@@ -4,6 +4,7 @@ import { MapView } from 'expo';
 import UserView from './UserView';
 import EventsView from './EventsView';
 import RequestView from './RequestView';
+import RentalView from './RentalView';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,7 +40,8 @@ export default class App extends React.Component {
 			  longitudeDelta: 0.0421}}>
 			  {
 				this.state.markers.map( marker => (
-					<MapView.Marker coordinate={marker.coordinate}/>
+					<MapView.Marker coordinate={marker.coordinate}
+					onPress={() => this.setState({tab: 'reservation'})}/>
 			  ))}
 			</MapView>
 		}
@@ -50,7 +52,10 @@ export default class App extends React.Component {
 			<EventsView/>
 		}  
 		{  this.state.tab == 'reservation' &&
-			<RequestView/>
+			<RequestView click={() => this.setState({tab: 'rental'})}/>
+		}
+		{  this.state.tab == 'rental' &&
+			<RentalView/>
 		}
 		</View>
 		<View style={{flex: 10, backgroundColor: 'powderblue', flexDirection: 'row'}}>
@@ -76,7 +81,7 @@ export default class App extends React.Component {
 				</TouchableOpacity>
 			</View>
 			<View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: this.state.tab == 'reservation' ? 'lightcyan' : 'powderblue'}}>
-				<TouchableOpacity style={{flex: 1}}y
+				<TouchableOpacity style={{flex: 1}}
 					onPress={() => this.setState({tab: 'reservation'})}
 				>
 					<Image source={require('./icons/reservations.png')} resizeMode='contain' style={{flex: 1}} pointerEvents={"none"}/>

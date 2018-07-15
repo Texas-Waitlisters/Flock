@@ -10,7 +10,7 @@ class UserView extends Component {
 			<Text style={{fontWeight: 'bold', fontSize: 35, color: 'grey', marginBottom: 15}}>Nathan Huckleberry</Text>
 			<View style={{backgroundColor: 'pink', borderRadius: 150, height: 150, width: 150, alignItems: 'center', justifyContent: 'center'}}>
 				<Text style={{fontWeight: 'bold', fontSize: 70, color: 'white'}} 
-				>5.4</Text>
+				>4.4</Text>
 			</View>
 			<Text style={{fontWeight: 'bold', fontSize: 25, color: 'grey'}}>Reputation Points</Text>
 		</View>
