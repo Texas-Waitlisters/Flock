@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { MapView } from 'expo';
 import UserView from './UserView';
+import EventsView from './EventsView';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,6 +35,9 @@ export default class App extends React.Component {
 		}
 	    { this.state.tab == 'user' &&
 			<UserView/>
+		}
+		{  this.state.tab == 'events' &&
+			<EventsView/>
 		}
 		</View>
 		<View style={{flex: 10, backgroundColor: 'powderblue', flexDirection: 'row'}}>
