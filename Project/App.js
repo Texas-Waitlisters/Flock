@@ -23,7 +23,7 @@ export default class App extends React.Component {
 			onSubmitEditing={() => this.setState({text: ''})}/>
 		</View>
 		<Text adjustFontSizeToFit={true} style={[styles.titleText, {flex: 5, backgroundColor: 'powderblue', padding: 5, color: 'grey'}]}>Flock</Text>
-		<View style={{flex: 68, backgroundColor: 'white', borderColor: 'white', borderTopWidth: 3, borderBottomWidth: 3}}>i
+		<View style={{flex: 68, backgroundColor: 'white', borderColor: 'white', borderTopWidth: 3, borderBottomWidth: 3}}>
 		{ this.state.tab == 'map' &&
 			<MapView style={{ flex: 1, }}
 			initialRegion={{
