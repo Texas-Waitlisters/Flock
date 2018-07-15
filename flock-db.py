@@ -1,15 +1,16 @@
 #!/usr/bin/python
 
-import MySQLdb
+import MySQLdb, subprocess
 from flask import Flask
+app = Flask(__name__)
 
 def searchByText(text):
     #expedia's nlp
-    print("hello")
+    print("not working")
 
-def searchByCoordinates(lat, lon):
-    #find location by coordinates 
-    print("hello")
+def searchByCoordinates(lat, lon, radius):
+    response = subprocess.check_output("curl -X GET --header 'Accept: application/json' --header 'key: 97207D3A-35EA-4685-947B-E92E0AE3EEAC' 'https://apim.expedia.com/x/geo/features?within=%dmi&lat=%d&lng=%d'" % (radius, lat, lon), shell=True)
+    return response
 
 def getUserData(user, sql): 
     sql.execute("select * from accounts where username = '%s'" % (user))
@@ -67,7 +68,6 @@ def main():
                         passwd="",  # your password
                         db="flock")        # name of the data base
     sql = db.cursor()
-    approveRental(1, sql, db)
 
 main()
 
@@ -92,4 +92,4 @@ def requestRentalReq():
     loc_id = request.args.get('loc_id')
     requestRental(acct_id, loc_id)
 
-db.close()
+#db.close()
