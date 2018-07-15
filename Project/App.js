@@ -3,11 +3,16 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'reac
 import { MapView } from 'expo';
 import UserView from './UserView';
 import EventsView from './EventsView';
+import RequestView from './RequestView';
 
 export default class App extends React.Component {
   constructor(props) {
 	super(props);
-	this.state = {text: '', tab: 'events'};
+	this.state = {text: '', tab: 'events',
+	markers: [
+	{
+		coordinate: {latitude: 32.0, longitude: -97.0}
+	}]};
   }
 	
   render() {
@@ -31,13 +36,21 @@ export default class App extends React.Component {
 			  latitude: 37.78825,
 			  longitude: -122.4324,
 			  latitudeDelta: 0.0922,
-			  longitudeDelta: 0.0421}}/>
+			  longitudeDelta: 0.0421}}>
+			  {
+				this.state.markers.map( marker => (
+					<MapView.Marker coordinate={marker.coordinate}/>
+			  ))}
+			</MapView>
 		}
 	    { this.state.tab == 'user' &&
 			<UserView/>
 		}
 		{  this.state.tab == 'events' &&
 			<EventsView/>
+		}  
+		{  this.state.tab == 'reservation' &&
+			<RequestView/>
 		}
 		</View>
 		<View style={{flex: 10, backgroundColor: 'powderblue', flexDirection: 'row'}}>

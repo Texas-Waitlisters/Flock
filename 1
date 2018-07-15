@@ -71,25 +71,8 @@ def main():
 
 main()
 
-@app.route('/getUserData')
-def getUserDataReq():
+@app.route("/getUserData"):
     user = request.args.get('user')
-    getUserData(user, sql)
-
-@app.route('/getRentalsAtLocation')
-def getRentalsAtLocationReq():
-    loc_id = request.args.get('loc_id')
-    getRentalsAtLocation(loc_id, sql)
-
-@app.route('/approveRental')
-def approveRentalReq():
-    rental_id = request.args.get('rental_id')
-    approveRental(rental_id, sql, db)
-
-@app.route('/requestRental')
-def requestRentalReq():
-    acct_id = request.args.get('acct_id')
-    loc_id = request.args.get('loc_id')
-    requestRental(acct_id, loc_id)
+    return getUserData(user, sql)
 
 db.close()
